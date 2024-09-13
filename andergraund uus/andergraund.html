@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SIIA PANE OMA LABELI LÜHIKIRJELDUS (google jaoks, lehel pole näha)">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="SIIA PANE OMA LEHE URL (google jaoks, lehel pole näha)">
+    <title>andergraund disc.</title>
+    <link rel="icon" type="image/x-icon" href="SIIA PANE OMA FAVICONI URL / PATH">
+    <link rel="stylesheet" href="andergraund-styles.css">
+</head>
+<body>
+    <div class="video-container">
+        <!-- Upper video -->
+        <video autoplay muted loop class="upper-video">
+            <source src="./assets/lillaloop3.webm" type="video/webm">
+        </video>
+
+        <!-- Lower video -->
+        <video autoplay muted loop class="lower-video" id="afke-vid">
+            <source src="./assets/loop2.webm" type="video/webm">
+        </video>
+
+        <video autoplay muted loop class="lower-video" id="metropol-vid">
+            <source src="./assets/metropol.webm" type="video/webm">
+        </video>
+
+        <video autoplay muted loop class="lower-video" id="ossu-vid">
+            <source src="./assets/ossu.webm" type="video/webm">
+        </video>
+
+        <video autoplay muted loop class="lower-video" id="sundei-vid">
+            <source src="./assets/lillaloop3.webm" type="video/webm">
+        </video>
+    </div>
+
+    <main>
+        <section class="header-container">
+            <header>
+                <div class="header-content">
+                    <h1>andergraund disc.</h1>
+                    <nav>
+                        <a href="#artists" onclick="changeCurrentArticle('artists')">artistid</a>
+                        <a href="#info" onclick="changeCurrentArticle('info')">info</a>
+                        <a href="#contact" onclick="changeCurrentArticle('contact')">kontakt</a>
+                    </nav>
+                </div>
+            </header>
+        </section>
+        <section class="content">
+            <div class="content-scroll" id="article-switch">
+                <article id="artists">
+                    <button class="artists-slide-button slide-left" type="button" onclick="changeSlide(-1)"><</button>
+                    <div class="artist-card fade hidden">
+                        <div class="artist-info">
+                            <h2>afke</h2>
+                            <p>
+                                Afke on 18aastane eesti vitunägu kes vihkab kõiki ilma asjata.
+                            </p>
+                            <nav>
+                                <a href="https://afke.ee" target="_blank" rel="noopener noreferrer">Afke</a>
+                            </nav>
+                        </div>
+                        <img src="../images/pesukaru.png" alt="Pesukaru image">
+                    </div>
+                    
+                    <div class="artist-card fade hidden">
+                        <div class="artist-info">
+                            <h2>Metropol</h2>
+                            <p>
+                                Indie-rock (kuigi nad ise kirjeldavad ennast kui "avangard proge dream indie alternatiiv art grunge noise audiosound shoegaze post rokk") ansambel Viljandist
+                            </p>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1624703307604-744ec383cbf4?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                    </div>
+                    <div class="artist-card fade hidden">
+                        <div class="artist-info">
+                            <h2>Ossu</h2>
+                            <p>
+                                Singer/Songwriter, Tartust
+                            </p>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1624703307604-744ec383cbf4?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                    </div>
+                    <div class="artist-card fade hidden">
+                        <div class="artist-info">
+                            <h2>sundei</h2>
+                            <p>
+                                Produtsent ja vabakutseline muusik Tartust
+                            </p>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1624703307604-744ec383cbf4?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                    </div>
+                    <button class="artists-slide-button slide-right" type="button" onclick="changeSlide(1)">></button>
+                </article>
+                <article id="info">
+                    <img src="https://images.unsplash.com/photo-1598653222000-6b7b7a552625?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                    <p class="info-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut facilis laudantium ipsa, sit ducimus quisquam quidem amet aperiam blanditiis quam assumenda eaque quia debitis ipsum, fugit molestiae consequuntur eos molestias.
+                    At illo voluptate assumenda excepturi sed ut unde! Provident voluptatem voluptates voluptate iste vero rem deserunt, adipisci veniam unde odit quis sapiente nam, ullam facilis animi, magnam modi incidunt perspiciatis?
+                    At et animi explicabo omnis doloribus impedit facere, amet aperiam odio fuga ex ad a repellendus suscipit perferendis temporibus dicta error tenetur ducimus quis deserunt? Earum quos voluptas nemo corporis!</p>
+                    <img src="https://images.unsplash.com/photo-1574925967690-d01236f9475f?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                </article>
+                <article id="contact">
+                    <p>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum alias libero obcaecati ratione totam tempore enim soluta minus porro id, repudiandae quas vitae beatae rerum optio asperiores illo officia iste!
+                    </p>
+                </article>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
+
+<script>
+    let currentSlide = 0;
+    let currentArticle = 'artists';
+    let slides = Array.from(document.getElementsByClassName("artist-card"));
+    let videos = Array.from(document.getElementsByClassName("lower-video"));  
+    let timeout;
+
+    function showSlides() {
+        if (slides.find(slide => !slide.classList.contains("hidden"))) {
+            slides.forEach(slide => slide.classList.add("hidden"));
+            videos.forEach(video => video.classList.add("hidden"));
+
+            if ((currentSlide + 1) >= slides.length) {
+                currentSlide = 0;
+            } else {
+                currentSlide++;
+            }
+
+            slides[currentSlide].classList.remove("hidden");
+            videos[currentSlide].classList.remove("hidden");
+        } else {
+            slides[currentSlide].classList.remove("hidden");
+            videos[currentSlide].classList.remove("hidden");
+        }
+
+        timeout = setTimeout(showSlides, 10000); // Changes artist every 10 seconds
+    }
+
+    function changeSlide(num) {
+        clearTimeout(timeout);
+
+        if ((currentSlide + num) >= slides.length) {
+            currentSlide = 0;
+        } else if ((currentSlide + num) < 0) {
+            currentSlide = slides.length - 1;
+        } else {
+            currentSlide += num;
+        }
+
+        slides.forEach(slide => slide.classList.add("hidden"));
+        videos.forEach(video => video.classList.add("hidden"));
+        slides[currentSlide].classList.remove("hidden");
+        videos[currentSlide].classList.remove("hidden");
+
+        timeout = setTimeout(showSlides, 10000);
+    };
+
+    function changeCurrentArticle(article) {
+        currentArticle = article;
+        if(currentArticle === 'artists') {
+            videos = Array.from(document.getElementsByClassName("lower-video"));
+        } else {
+            videos = Array.from(document.getElementsByClassName("lower-video"))[0];
+        }
+        console.log(currentArticle)
+    }
+
+    showSlides();
+</script>

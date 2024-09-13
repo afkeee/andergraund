@@ -1,0 +1,348 @@
+@font-face {
+    font-family: "Selawik";
+    src: url("./selawkb.ttf");
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    overflow: hidden;
+    height: 100%;
+}
+
+body {
+    font-family: "Selawik", sans-serif;
+    font-size: 18px;
+    color: white; /* Set text color to white */
+}
+
+/* Video container holding both videos */
+.video-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Sends videos to the background */
+}
+
+.upper-video, .lower-video {
+    width: 100%;
+    height: 50vh;
+    object-fit: cover;
+}
+/* Main content appears above videos */
+main {
+    position: relative;
+    z-index: 1; /* Keep main content above the videos */
+    font-size: 18px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    height: 100%;
+}
+
+h1 {
+    font-size: 3rem;
+    border-bottom: 5px solid white; /* White border */
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    color: white; /* White text */
+}
+
+h2 {
+    font-size: 2rem;
+    border-bottom: 3px solid white; /* White border */
+    margin: 0;
+    color: white; /* White text */
+}
+
+
+header {
+    height: 38vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.header-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid white;
+}
+
+.header-content {   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    background-color: rgba(255, 255, 255, 0.2); /* Light transparent white background */
+    width: fit-content;
+    padding: 1rem;
+    text-align: center;
+}
+
+nav {
+    display: flex;
+    gap: 1rem;
+}
+
+nav > a {
+    border: 2px solid white; /* White border */
+    background: transparent;
+    color: white; /* White text */
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem; /* White shadow */
+    box-shadow: 0px;
+    transition: 0.3s ease;
+}
+
+nav > a:hover {
+    box-shadow: 3px 3px 0 1px white;
+    transform: translate(-3px, -3px);
+}
+
+nav > a:active {
+    transform: translate(0, 0);
+}
+
+section.content {
+    width: 100vw;
+    margin: 0;
+}
+
+section.content > .content-scroll {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+article {
+    display: flex;
+    min-width: 100vw;
+    height: 100%;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center; /* Center content horizontally */
+    /* Center content vertically within the card */
+    align-items: center;
+    height: 50vh; /* Adjust height of the article section */
+}
+
+article#artists{
+    background-color: rgba(0,0,0, 0.6);
+}
+
+p, h1, h2, h3{
+    text-shadow: 2px 3px 3px black;
+}
+
+/* Ensure a consistent height for the image container */
+.artist-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px; /* Restrict max width */
+    margin: auto;
+    gap: 2rem;
+    height: 100%; /* Ensure full height for the card */
+}
+
+img{
+    height: auto;
+    object-fit: cover; /* Maintain aspect ratio */
+    max-height: 80%; /* Ensure the image fills the available height */
+    
+}
+
+img:not(img[alt="Pesukaru image"]) {
+    border-radius: 10px;
+    box-shadow: 0px 10px 15px 1px rgba(0,0,0,0.5); /* White shadow */
+}
+
+.artist-info {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; /* Align text content to the center */
+}
+
+#info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#info img {
+    width: 30%;
+}
+
+.info-text {
+    width: 50%;
+    padding: 0 1rem;
+}
+
+#contact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+#contact p {
+    width: 50%;
+    margin: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+.fade {
+    opacity: 0;
+    animation: fade-in 10s linear forwards;
+}
+
+.artists-slide-button {
+    border: 2px solid white; /* White border */
+    background: transparent;
+    color: white; /* White text */
+    box-shadow: 3px 3px 0 1px white; /* White shadow */
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    margin: 0rem 2rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.artists-slide-button:hover {
+    transform: scale(1.1);
+}
+
+@keyframes fade-in {
+    0% { opacity: 0;}
+    5% { opacity: 1;} 
+    95% { opacity: 1; }
+    100% { opacity: 0;}
+}
+
+/* Tablet styles */
+@media only screen and (max-width: 1023px) {
+    html, body {
+        overflow: auto;
+        height: auto;
+    }
+
+    .artist-card img {
+        width: 50%;
+        max-height: 300px; /* Reduce height on smaller screens */
+    }
+
+    .artist-card {
+        height: 300px; /* Ensure full height for the card */
+    }
+
+    #info {
+        flex-direction: column;
+    }
+
+    #info img {
+        width: 50%;
+        margin-bottom: 1rem;
+    }
+
+    .info-text {
+        width: 80%;
+    }
+
+    article {
+        padding: 1rem;
+    }
+
+    .artist-info {
+        width: 100%;
+    }
+
+    .artist-card {
+        flex-direction: column;
+    }
+}
+
+/* Mobile styles */
+@media only screen and (max-width: 767px) {
+    body {
+        font-size: 1.1rem;
+    }
+
+    header {
+        height: 28vh;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        margin: 1rem 0;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+        margin: 1rem 0;
+    }
+
+    article {
+        padding: 0.5rem;
+        gap: 1rem;
+        flex-direction: column;
+    }
+
+    img {
+        width: 80%;
+        max-height: 300px;
+    }
+
+    .artist-card {
+        flex-direction: column;
+        align-items: center;
+        height: 300px; /* Adjust height for mobile */
+    }
+
+    .artist-info {
+        width: 100%;
+        text-align: center;
+    }
+
+    #info {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #info img {
+        width: 80%;
+    }
+
+    .info-text {
+        width: 100%;
+        text-align: center;
+    }
+
+    #contact p {
+        width: 80%;
+    }
+}
