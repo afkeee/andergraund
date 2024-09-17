@@ -14,24 +14,12 @@
     <div class="video-container">
         <!-- Upper video -->
         <video autoplay muted loop class="upper-video">
-            <source src="./assets/lillaloop3.webm" type="video/webm">
+            <source src="./assets/andergraundisc.webm" type="video/webm">
         </video>
 
         <!-- Lower video -->
-        <video autoplay muted loop class="lower-video" id="afke-vid">
-            <source src="./assets/loop2.webm" type="video/webm">
-        </video>
-
-        <video autoplay muted loop class="lower-video" id="metropol-vid">
-            <source src="./assets/metropol.webm" type="video/webm">
-        </video>
-
-        <video autoplay muted loop class="lower-video" id="ossu-vid">
-            <source src="./assets/ossu.webm" type="video/webm">
-        </video>
-
-        <video autoplay muted loop class="lower-video" id="sundei-vid">
-            <source src="./assets/lillaloop3.webm" type="video/webm">
+        <video autoplay muted loop class="lower-video" id="lowerVid">
+            <source type="video/webm">
         </video>
     </div>
 
@@ -39,11 +27,10 @@
         <section class="header-container">
             <header>
                 <div class="header-content">
-                    <h1>andergraund disc.</h1>
-                    <nav>
-                        <a href="#artists" onclick="changeCurrentArticle('artists')">artistid</a>
-                        <a href="#info" onclick="changeCurrentArticle('info')">info</a>
-                        <a href="#contact" onclick="changeCurrentArticle('contact')">kontakt</a>
+                    <nav onchange="changeArticle()">
+                        <a href="#artists" onclick="changeArticle('artists')">artistid</a>
+                        <a href="#info" onclick="changeArticle('info')">info</a>
+                        <a href="#contact" onclick="changeArticle('contact')">kontakt</a>
                     </nav>
                 </div>
             </header>
@@ -52,7 +39,7 @@
             <div class="content-scroll" id="article-switch">
                 <article id="artists">
                     <button class="artists-slide-button slide-left" type="button" onclick="changeSlide(-1)"><</button>
-                    <div class="artist-card fade hidden">
+                    <div class="artist-card fade hidden" id="afke">
                         <div class="artist-info">
                             <h2>afke</h2>
                             <p>
@@ -65,7 +52,7 @@
                         <img src="./images/pesukaru.png" alt="Pesukaru image">
                     </div>
                     
-                    <div class="artist-card fade hidden">
+                    <div class="artist-card fade hidden" id="metropol">
                         <div class="artist-info">
                             <h2>Metropol</h2>
                             <p>
@@ -74,7 +61,7 @@
                         </div>
                         <img src="https://images.unsplash.com/photo-1624703307604-744ec383cbf4?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
                     </div>
-                    <div class="artist-card fade hidden">
+                    <div class="artist-card fade hidden" id="ossu">
                         <div class="artist-info">
                             <h2>Ossu</h2>
                             <p>
@@ -83,7 +70,7 @@
                         </div>
                         <img src="https://images.unsplash.com/photo-1624703307604-744ec383cbf4?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
                     </div>
-                    <div class="artist-card fade hidden">
+                    <div class="artist-card fade hidden" id="sundei">
                         <div class="artist-info">
                             <h2>sundei</h2>
                             <p>
@@ -114,37 +101,50 @@
 
 <script>
     let currentSlide = 0;
-    let currentArticle = 'artists';
+    let currentArticle = document.URL.split('/').pop().split('#').pop();
+    let article = document.getElementById('article-switch')
     let slides = Array.from(document.getElementsByClassName("artist-card"));
-    let videos = Array.from(document.getElementsByClassName("lower-video"));  
+
+    let videoElem = document.getElementById('lowerVid')
+    let videoSrcs = {
+        "default": "lillaloop3",
+        "sundei": "lillaloop3",
+        "afke": "loop2",
+        "metropol": "metropol",
+        "ossu": "ossu"
+    }
     let timeout;
 
-    function showSlides() {
-        if(currentArticle === 'artists') {
-            if (slides.find(slide => !slide.classList.contains("hidden"))) {
-                slides.forEach(slide => slide.classList.add("hidden"));
-                videos.forEach(video => video.classList.add("hidden"));
-
-                if ((currentSlide + 1) >= slides.length) {
-                    currentSlide = 0;
-                } else {
-                    currentSlide++;
-                }
-
-                slides[currentSlide].classList.remove("hidden");
-                videos[currentSlide].classList.remove("hidden");
-            } else {
-                slides[currentSlide].classList.remove("hidden");
-                videos[currentSlide].classList.remove("hidden");
-            }
-
-            timeout = setTimeout(showSlides, 10000); // Changes artist every 10 seconds
+    function updateVideoSource() {
+        let newSrc;
+        if (currentArticle === 'artists') {
+            newSrc = `./assets/${videoSrcs[slides[currentSlide].id]}.webm`;
         } else {
-            slides.forEach(slide => slide.classList.add("hidden"));
-            videos.forEach(video => video.classList.add("hidden"));
-            slides[3].classList.remove("hidden");
-            videos[3].classList.remove("hidden");
+            newSrc = `./assets/${videoSrcs['default']}.webm`;
         }
+
+        // Only update the video source if it's different from the current source
+        if (videoElem.src.split('/').pop() !== newSrc.split('/').pop()) {
+            videoElem.src = newSrc;
+        }
+    }
+
+    function showSlides() {
+        if ((currentSlide + 1) >= slides.length) {
+            currentSlide = 0;
+        } else {
+            currentSlide++;
+        }
+
+        updateVideoSource();
+
+        if (currentArticle === 'artists') {
+            slides.forEach(slide => slide.classList.add("hidden"));
+            slides[currentSlide].classList.remove("hidden");
+        }
+
+        updateVideoSource();
+        timeout = setTimeout(showSlides, 10000); // Changes artist every 10 seconds
     }
 
     function changeSlide(num) {
@@ -158,23 +158,28 @@
             currentSlide += num;
         }
 
-        slides.forEach(slide => slide.classList.add("hidden"));
-        videos.forEach(video => video.classList.add("hidden"));
-        slides[currentSlide].classList.remove("hidden");
-        videos[currentSlide].classList.remove("hidden");
+        updateVideoSource();
 
+        if (currentArticle === 'artists') {
+            slides.forEach(slide => slide.classList.add("hidden"));
+            slides[currentSlide].classList.remove("hidden");
+        }
+
+        updateVideoSource();
         timeout = setTimeout(showSlides, 10000);
     };
 
-    function changeCurrentArticle(article) {
-        currentArticle = article;
-        if(currentArticle === 'artists') {
-            videos = Array.from(document.getElementsByClassName("lower-video"));
+    function changeArticle(articleName) {
+        clearTimeout(timeout); // Clear the timeout when changing articles
+        currentArticle = articleName;
+
+        if (currentArticle === 'artists') {
+            changeSlide(0); // Reset the slideshow and restart if on 'artists'
         } else {
-            currentSlide = 0;
-            videos = Array.from(document.getElementsByClassName("lower-video"))[0];
+            // Hide all artist slides if not in the 'artists' section
+            slides.forEach(slide => slide.classList.add("hidden"));
+            updateVideoSource(); // Ensure the video changes to default
         }
-        console.log(currentArticle)
     }
 
     showSlides();

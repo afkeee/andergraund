@@ -65,10 +65,10 @@ h2 {
 
 
 header {
-    height: 38vh;
+    height: 35vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     padding: 0 2rem;
 }
@@ -86,7 +86,6 @@ header {
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    background-color: rgba(255, 255, 255, 0.2); /* Light transparent white background */
     width: fit-content;
     padding: 1rem;
     text-align: center;
@@ -106,6 +105,7 @@ nav > a {
     font-size: 1.5rem; /* White shadow */
     box-shadow: 0px;
     transition: 0.3s ease;
+    border-radius: 10px;
 }
 
 nav > a:hover {
@@ -219,22 +219,28 @@ img:not(img[alt="Pesukaru image"]) {
     animation: fade-in 10s linear forwards;
 }
 
-.artists-slide-button {
+.artists-slide-button{
     border: 2px solid white; /* White border */
+    border-radius: 10px;
     background: transparent;
     color: white; /* White text */
-    box-shadow: 3px 3px 0 1px white; /* White shadow */
     text-decoration: none;
     padding: 0.5rem 1rem;
     margin: 0rem 2rem;
     font-size: 1.5rem;
     font-weight: 700;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    box-shadow: 0px;
+    transition: 0.3s ease;
 }
 
-.artists-slide-button:hover {
-    transform: scale(1.1);
+.artists-slide-button:hover{
+    box-shadow: 3px 3px 0 1px white;
+    transform: translate(-3px, -3px);
+}
+
+.artists-slide-button:active{
+    transform: translate(0, 0);
 }
 
 @keyframes fade-in {
