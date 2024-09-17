@@ -123,9 +123,21 @@
             newSrc = `./assets/${videoSrcs['default']}.webm`;
         }
 
-        // Only update the video source if it's different from the current source
-        if (videoElem.src.split('/').pop() !== newSrc.split('/').pop()) {
-            videoElem.src = newSrc;
+        // Check if the new source is different from the current one
+        if (videoElem.src !== newSrc) {
+            // Fade out the video
+            videoElem.style.opacity = 0;
+
+            // Wait for the fade-out transition (500ms), then update the video source
+            setTimeout(() => {
+                videoElem.src = newSrc;
+                console.log('Video source updated to:', newSrc); // For debugging
+
+                // Fade the video back in after updating the source
+                videoElem.onloadeddata = () => {
+                    videoElem.style.opacity = 1;
+                };
+            }, 500); // Duration matches the CSS transition time
         }
     }
 

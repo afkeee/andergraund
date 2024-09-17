@@ -16,6 +16,7 @@ html, body {
 body {
     font-family: "Selawik", sans-serif;
     font-size: 18px;
+    background-color: black;
     color: white; /* Set text color to white */
 }
 
@@ -241,6 +242,11 @@ img:not(img[alt="Pesukaru image"]) {
 
 .artists-slide-button:active{
     transform: translate(0, 0);
+}
+
+#lowerVid {
+    transition: opacity 0.5s ease-in-out;
+    opacity: 1; /* Initially fully visible */
 }
 
 @keyframes fade-in {
