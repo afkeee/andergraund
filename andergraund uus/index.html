@@ -62,7 +62,7 @@
                                 <a href="https://afke.ee" target="_blank" rel="noopener noreferrer">Afke</a>
                             </nav>
                         </div>
-                        <img src="../images/pesukaru.png" alt="Pesukaru image">
+                        <img src="./images/pesukaru.png" alt="Pesukaru image">
                     </div>
                     
                     <div class="artist-card fade hidden">
@@ -120,24 +120,31 @@
     let timeout;
 
     function showSlides() {
-        if (slides.find(slide => !slide.classList.contains("hidden"))) {
-            slides.forEach(slide => slide.classList.add("hidden"));
-            videos.forEach(video => video.classList.add("hidden"));
+        if(currentArticle === 'artists') {
+            if (slides.find(slide => !slide.classList.contains("hidden"))) {
+                slides.forEach(slide => slide.classList.add("hidden"));
+                videos.forEach(video => video.classList.add("hidden"));
 
-            if ((currentSlide + 1) >= slides.length) {
-                currentSlide = 0;
+                if ((currentSlide + 1) >= slides.length) {
+                    currentSlide = 0;
+                } else {
+                    currentSlide++;
+                }
+
+                slides[currentSlide].classList.remove("hidden");
+                videos[currentSlide].classList.remove("hidden");
             } else {
-                currentSlide++;
+                slides[currentSlide].classList.remove("hidden");
+                videos[currentSlide].classList.remove("hidden");
             }
 
-            slides[currentSlide].classList.remove("hidden");
-            videos[currentSlide].classList.remove("hidden");
+            timeout = setTimeout(showSlides, 10000); // Changes artist every 10 seconds
         } else {
-            slides[currentSlide].classList.remove("hidden");
-            videos[currentSlide].classList.remove("hidden");
+            slides.forEach(slide => slide.classList.add("hidden"));
+            videos.forEach(video => video.classList.add("hidden"));
+            slides[3].classList.remove("hidden");
+            videos[3].classList.remove("hidden");
         }
-
-        timeout = setTimeout(showSlides, 10000); // Changes artist every 10 seconds
     }
 
     function changeSlide(num) {
@@ -164,6 +171,7 @@
         if(currentArticle === 'artists') {
             videos = Array.from(document.getElementsByClassName("lower-video"));
         } else {
+            currentSlide = 0;
             videos = Array.from(document.getElementsByClassName("lower-video"))[0];
         }
         console.log(currentArticle)
