@@ -147,6 +147,10 @@ article#artists{
     background-color: rgba(0,0,0, 0.6);
 }
 
+article#blogi{
+    background-color: rgba(0,0,0, 0.6);
+}
+
 p, h1, h2, h3{
     text-shadow: 2px 3px 3px black;
 }

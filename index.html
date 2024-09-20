@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="SIIA PANE OMA LABELI LÜHIKIRJELDUS (google jaoks, lehel pole näha)">
+    <meta name="description" content="Kamp muusikuid, tegemas muusikat!">
     <meta name="robots" content="index,follow">
     <link rel="canonical" href="https://andergraund.ee/#artists">
     <title>andergraund disc.</title>
@@ -14,7 +14,7 @@
     <div class="video-container">
         <!-- Upper video -->
         <video autoplay muted loop class="upper-video">
-            <source src="./assets/anderloop1.webm" type="video/webm">
+            <source src="./assets/andergraund loop.webm" type="video/webm">
         </video>
 
         <!-- Lower video -->
@@ -28,6 +28,7 @@
             <header>
                 <div class="header-content">
                     <nav onchange="changeArticle()">
+                        <a href="#blogi" onclick="changeArticle('blogi')">blogi</a>
                         <a href="#artists" onclick="changeArticle('artists')">artistid</a>
                         <a href="#info" onclick="changeArticle('info')">info</a>
                         <a href="#contact" onclick="changeArticle('contact')">kontakt</a>
@@ -37,19 +38,24 @@
         </section>
         <section class="content">
             <div class="content-scroll" id="article-switch">
+                <article id="blogi">
+                <p>
+                    Work in progress
+                </p>
+                </article>
                 <article id="artists">
                     <button class="artists-slide-button slide-left" type="button" onclick="changeSlide(-1)"><</button>
                     <div class="artist-card fade hidden" id="afke">
                         <div class="artist-info">
                             <h2>afke</h2>
                             <p>
-                                18aastane soolo edm/lo-fi prode Harjumaalt. Pesukarud on tema värk!
+                                18aastane edm/lo-fi prode Harjumaalt. Pesukarud on tema värk!
                             </p>
                             <nav>
                                 <a href="https://afke.ee" target="_blank" rel="noopener noreferrer">afke.ee</a>
                             </nav>
                         </div>
-                        <img src="./images/raccoonpixelsortafke.jpg" alt="Pesukaru image">
+                        <img src="./images/raccoonpixelsortafke.jpg" alt="">
                     </div>
                     
                     <div class="artist-card fade hidden" id="metropol">
@@ -88,14 +94,20 @@
                     <button class="artists-slide-button slide-right" type="button" onclick="changeSlide(1)">></button>
                 </article>
                 <article id="info">
-                    <img src="https://images.unsplash.com/photo-1598653222000-6b7b7a552625?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
-                    <p class="info-text">Andergraund on kamp muusikuid, tegemas muusikat!</p>
-                    <img src="https://images.unsplash.com/photo-1574925967690-d01236f9475f?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                    <img src="" alt="">
+                    <p class="info-text">Andergraund on kamp muusikuid, tegemas muusikat! Hetkesel seisul on veebileht veel pooleli.</p>
+                    <img src="" alt="">
                 </article>
                 <article id="contact">
                     <p>
                     andergraund@gmail.com
                     </p>
+                <nav>
+                    <a href="https://soundcloud.com/andergraunddisc" target="_blank" rel="noopener noreferrer">Soundcloud.</a>
+                </nav>
+                <nav>
+                    <a href="https://www.instagram.com/andergraunddisc/" target="_blank" rel="noopener noreferrer">Instagram.</a>
+                </nav>
                 </article>
             </div>
         </section>
@@ -111,11 +123,11 @@
 
     let videoElem = document.getElementById('lowerVid')
     let videoSrcs = {
-        "default": "lillaloop3",
-        "sundei": "lillaloop3",
+        "default": "lillaloop4",
+        "sundei": "lillaloop4",
         "afke": "afkeloop2",
         "metropol": "metropol",
-        "ossu": "ossu"
+        "ossu": "ossubanneruus"
     }
     let timeout;
 
