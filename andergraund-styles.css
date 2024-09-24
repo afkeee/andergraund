@@ -95,6 +95,7 @@ header {
 nav {
     display: flex;
     gap: 1rem;
+    height: 100%;
 }
 
 nav > a {
@@ -253,6 +254,8 @@ img:not(img[alt="Pesukaru image"]) {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 100%;
+    width: 100%;
 }
 
 .contact-header{
@@ -277,6 +280,8 @@ img:not(img[alt="Pesukaru image"]) {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 5rem;
+    width: 5rem;
 }
 
 #lowerVid {
