@@ -296,6 +296,74 @@ img:not(img[alt="Pesukaru image"]) {
     100% { opacity: 0;}
 }
 
+.blog-card{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px; /* Restrict max width */
+    margin: auto;
+    gap: 4rem;
+    height: 100%;
+}
+
+.blog-text{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+
+.blog-image{
+    display: flex;
+    width: 40%;
+}
+
+.blog-image img{
+    width: 100%;
+}
+
+.blog-hidden{
+    display: none;
+}
+
+.blog-slide-button{
+    position: absolute;
+    border: none;
+    background: transparent;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.blog-slide-button:hover{
+    animation: arrowBounce infinite 1s;
+}
+
+.blog-slide-button:active{
+    transform: translate(0, 0);
+}
+
+#blog-up{
+    top: calc(50vh + 10px);
+}
+#blog-down{
+    bottom: 5px;
+}
+
+@keyframes arrowBounce{
+    0%{
+        transform: translateY(0px);
+    }
+    50%{
+        transform: translateY(10px);
+    }
+    100%{
+        transform: translateY(0px);
+    }
+}
+
 /* Tablet styles */
 @media only screen and (max-width: 1023px) {
     html, body {
