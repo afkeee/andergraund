@@ -28,7 +28,7 @@
             <header>
                 <div class="header-content">
                     <nav onchange="changeArticle()">
-                        <a href="#blogi" onclick="changeArticle('blogi')">blogi</a>
+                        <a href="#blog" onclick="changeArticle('blog')">blogi</a>
                         <a href="#artists" onclick="changeArticle('artists')">artistid</a>
                         <a href="#info" onclick="changeArticle('info')">info</a>
                         <a href="#contact" onclick="changeArticle('contact')">kontakt</a>
@@ -38,7 +38,7 @@
         </section>
         <section class="content">
             <div class="content-scroll" id="article-switch">
-                <article id="blogi">
+                <article id="blog">
                     <button class="blog-slide-button" id="blog-up" type="button" onclick="changeBlog(-1)">
                         <svg xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 -960 960 960" width="36px" fill="#ffffff"><path d="M440-160v-487L216-423l-56-57 320-320 320 320-56 57-224-224v487h-80Z"/></svg>
                     </button>
@@ -54,7 +54,8 @@
                             <img src="./images/456898940_1941772729609968_3413986241813720113_n.jpg">
                         </div>
                     </div>
-                    <div class="blog-card blog-hidden" id="blog-1"></div>
+
+                    <div class="blog-card blog-hidden" id="blog-2"></div>
                         <div class="blog-text">
                             <h2>Blog 1</h2>
                             <p>
@@ -113,7 +114,7 @@
                         <div class="artist-info">
                             <h2>sundei</h2>
                             <p>
-                                Produtsent ja vabakutseline muusik Tartust
+                                Produtsent ja vabakutseline muusik Tartust  
                             </p>
                         </div>
                         <img src="https://images.unsplash.com/photo-1624703307604-744ec383cbf4?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
@@ -169,30 +170,26 @@
     let timeout;
 
     let currentBlog = 0
-    let blogs = Array.from(document.getElementsByClassName('blog-card'))
+    let blogs = Array.from(document.getElementsByClassName("blog-card"));
+    
+    function changeBlog(direction) {
+        // Hide the current blog
+        blogs[currentBlog].classList.add('blog-hidden');
 
-    function changeBlog(num){
-        if ((currentBlog + num) >= blogs.length) {
-            currentBlog = blogs.length - 1
-        } else if ((currentBlog + num) < 0) {
+        // Update the current blog index
+        currentBlog += direction;
+
+        // Ensure the index wraps around
+        if (currentBlog < 0) {
+            currentBlog = blogs.length - 1;
+        } else if (currentBlog >= blogs.length) {
             currentBlog = 0;
-        } else {
-            currentBlog += num;
         }
 
-        blogs.forEach(blog => blog.classList.add("blog-hidden"));
-        blogs[currentBlog].classList.remove("blog-hidden");
+        // Show the new blog
+        blogs[currentBlog].classList.remove('blog-hidden');
     }
 
-    function showBlogs(){
-        if ((currentBlog + 1) >= slides.length) {
-            currentSlide = blogs.length - 1;
-        } else {
-            currentSlide++;
-        }
-
-        changeBlog(0)
-    }
 
     function updateVideoSource() {
         let newSrc;
@@ -269,12 +266,12 @@
         } else {
             // Hide all artist slides if not in the 'artists' section
             slides.forEach(slide => slide.classList.add("hidden"));
+            blogs.forEach(blog => blog.classList.add("blog-hidden"));
             updateVideoSource(); // Ensure the video changes to default
         }
     }
 
     showSlides();
-    showBlogs();
 
     window.onload = function() {
         changeArticle('artists');

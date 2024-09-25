@@ -304,7 +304,10 @@ img:not(img[alt="Pesukaru image"]) {
     max-width: 1200px; /* Restrict max width */
     margin: auto;
     gap: 4rem;
-    height: 100%;
+    border: 1px solid white;
+    padding: 2rem;
+    margin: 1rem;
+    border-radius: 15px;
 }
 
 .blog-text{
@@ -327,7 +330,6 @@ img:not(img[alt="Pesukaru image"]) {
 }
 
 .blog-slide-button{
-    position: absolute;
     border: none;
     background: transparent;
     text-decoration: none;
@@ -343,13 +345,6 @@ img:not(img[alt="Pesukaru image"]) {
 
 .blog-slide-button:active{
     transform: translate(0, 0);
-}
-
-#blog-up{
-    top: calc(50vh + 10px);
-}
-#blog-down{
-    bottom: 5px;
 }
 
 @keyframes arrowBounce{
