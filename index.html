@@ -165,57 +165,6 @@
     }
     let timeout;
 
-    let slider = document.getElementsByClassName('blog-scroll')[0];
-    let isDown = false;
-    let startY;
-    let scrollDown;
-
-    slider.addEventListener('mousedown', (e) => {
-        isDown = true;
-        startY = e.pageY - slider.offsetY;
-        scrollDown = slider.scrollTop;
-    });
-
-    slider.addEventListener('mouseleave', () => {
-        isDown = false;
-    });
-
-    slider.addEventListener('mouseup', () => {
-        isDown = false;
-    });
-
-    slider.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        console.log(isDown)
-    })
-    
-
-    // let currentBlog = 0
-    // let blogs = Array.from(document.getElementsByClassName("blog-card"));
-    
-    // function changeBlog(direction) {
-    //     blogs[currentBlog].classList.add('flip-out');
-    //     blogs[currentBlog].classList.remove('flip-in');
-    //     blogs[currentBlog].classList.add('blog-hidden');
-        
-
-    //     currentBlog += direction;
-
-    //     // Ensure the index wraps around
-    //     if (currentBlog < 0) {
-    //         currentBlog = blogs.length - 1;
-    //     } else if (currentBlog >= blogs.length) {
-    //         currentBlog = 0;
-    //     }
-
-        
-    //     blogs[currentBlog].classList.remove('blog-hidden');
-        
-    //     blogs[currentBlog].classList.add('flip-in');
-    //     blogs[currentBlog].classList.remove('flip-out');
-    // }
-
-
     function updateVideoSource() {
         let newSrc;
         if (currentArticle === 'artists') {

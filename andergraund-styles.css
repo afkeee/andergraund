@@ -301,13 +301,19 @@ img:not(img[alt="Pesukaru image"]) {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
+    height: 100%;
+    gap: 2rem;
+
     overflow-x: hidden;
     scroll-behavior: smooth;
     scroll-snap-type: y mandatory;
     scroll-snap-stop: always;
-    height: 100%;
-    gap: 2rem;
+
+    overflow-y: scroll;
+    scrollbar-color: grey transparent;
+    scrollbar-width: thin;
 }
+
 
 .blog-card{
     scroll-snap-align: center;
