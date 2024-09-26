@@ -28,7 +28,7 @@
             <header>
                 <div class="header-content">
                     <nav onchange="changeArticle()">
-                        <a href="#blogi" onclick="changeArticle('blogi')">blogi</a>
+                        <a href="#blog" onclick="changeArticle('blog')">blogi</a>
                         <a href="#artists" onclick="changeArticle('artists')">artistid</a>
                         <a href="#info" onclick="changeArticle('info')">info</a>
                         <a href="#contact" onclick="changeArticle('contact')">kontakt</a>
@@ -38,13 +38,8 @@
         </section>
         <section class="content">
             <div class="content-scroll" id="article-switch">
-                <article id="blogi">
-                <p>
-                    Work in progress
-                </p>
-                </article>
                 <article id="artists">
-                    <button class="artists-slide-button slide-left" type="button" onclick="changeSlide(-1)"><</button>
+                    <button class="artists-slide-button slide-left" type="button" id="arrow-" onclick="changeSlide(-1)"><</button>
                     <div class="artist-card fade hidden" id="afke">
                         <div class="artist-info">
                             <h2>afke</h2>
@@ -86,12 +81,41 @@
                         <div class="artist-info">
                             <h2>sundei</h2>
                             <p>
-                                Produtsent ja vabakutseline muusik Tartust
+                                Produtsent ja vabakutseline muusik Tartust  
                             </p>
                         </div>
                         <img src="https://images.unsplash.com/photo-1624703307604-744ec383cbf4?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
                     </div>
-                    <button class="artists-slide-button slide-right" type="button" onclick="changeSlide(1)">></button>
+                    <button class="artists-slide-button slide-right" type="button" id="arrow-down" onclick="changeSlide(1)">></button>
+                </article>
+                <article id="blog">
+
+                    <div class="blog-scroll">
+                        <div class="blog-card" id="blog-1">
+                            <div class="blog-text">
+                                <h2>Blog 1</h2>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                </p>
+                            </div>
+                            <div class="blog-image">
+                                <img src="./images/456898940_1941772729609968_3413986241813720113_n.jpg">
+                            </div>
+                        </div>
+    
+                        <div class="blog-card" id="blog-2">
+                            <div class="blog-text">
+                                <h2>Blog 2</h2>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                </p>
+                            </div>
+                            <div class="blog-image">
+                                <img src="./images/456898940_1941772729609968_3413986241813720113_n.jpg">
+                            </div>
+                        </div>
+                    </div>
+
                 </article>
                 <article id="info">
                     <img src="" alt="">
@@ -107,12 +131,12 @@
                         </div>
                         <div class="contact-nav">
                             <nav>
-                                <a href="https://soundcloud.com/andergraunddisc" target="_blank" rel="noopener noreferrer">
+                                <a href="https://www.instagram.com/andergraunddisc/" target="_blank" rel="noopener noreferrer">
                                     <img src="./images/instagram.png" width="48">
                                 </a>
                             </nav>
                             <nav>
-                                <a href="https://www.instagram.com/andergraunddisc/" target="_blank" rel="noopener noreferrer">
+                                <a href="https://soundcloud.com/andergraunddisc" target="_blank" rel="noopener noreferrer">
                                     <img src="./images/soundcloud.png" width="48" height="48">
                                 </a>
                             </nav>
@@ -145,6 +169,8 @@
         let newSrc;
         if (currentArticle === 'artists') {
             newSrc = `./assets/${videoSrcs[slides[currentSlide].id]}.webm`;
+        } else if(currentArticle === 'blog') {
+            newSrc = `./assets/${videoSrcs['default']}.webm`;
         } else {
             newSrc = `./assets/${videoSrcs['default']}.webm`;
         }
@@ -157,7 +183,6 @@
             // Wait for the fade-out transition (500ms), then update the video source
             setTimeout(() => {
                 videoElem.src = newSrc;
-                console.log('Video source updated to:', newSrc); // For debugging
 
                 // Fade the video back in after updating the source
                 videoElem.onloadeddata = () => {
@@ -213,7 +238,7 @@
 
         if (currentArticle === 'artists') {
             changeSlide(0); // Reset the slideshow and restart if on 'artists'
-        } else {
+        }else {
             // Hide all artist slides if not in the 'artists' section
             slides.forEach(slide => slide.classList.add("hidden"));
             updateVideoSource(); // Ensure the video changes to default

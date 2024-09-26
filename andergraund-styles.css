@@ -296,6 +296,97 @@ img:not(img[alt="Pesukaru image"]) {
     100% { opacity: 0;}
 }
 
+.blog-scroll{
+    padding: 2rem 0rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    height: 100%;
+    gap: 2rem;
+
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+    scroll-snap-stop: always;
+
+    overflow-y: scroll;
+    scrollbar-color: grey transparent;
+    scrollbar-width: thin;
+}
+
+
+.blog-card{
+    scroll-snap-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px; /* Restrict max width */
+    margin: auto;
+    gap: 4rem;
+    border: 1px solid white;
+    padding: 2rem;
+    margin: 0rem 0.5rem;
+    border-radius: 15px;
+    background-color: rgba(0,0,0, 0.6);
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+}
+
+.blog-card.flip-in {
+    animation: flipIn 0.6s forwards;
+}
+
+.blog-card.flip-out {
+    animation: flipOut 0.6s forwards;
+}
+
+.blog-text{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+
+.blog-image{
+    display: flex;
+    width: 40%;
+}
+
+.blog-image img{
+    width: 100%;
+}
+
+.blog-slide-button{
+    border: none;
+    background: transparent;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.blog-slide-button:hover{
+    animation: arrowBounce infinite 1s;
+}
+
+.blog-slide-button:active{
+    transform: translate(0, 0);
+}
+
+@keyframes arrowBounce{
+    0%{
+        transform: translateY(0px);
+    }
+    50%{
+        transform: translateY(10px);
+    }
+    100%{
+        transform: translateY(0px);
+    }
+}
+
 /* Tablet styles */
 @media only screen and (max-width: 1023px) {
     html, body {
