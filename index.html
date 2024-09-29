@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Kamp muusikuid, tegemas muusikat!">
     <meta name="robots" content="index,follow">
-    <link rel="canonical" href="https://andergraund.ee/#artists">
+    <link rel="canonical" href="https://andergraund.ee/#blog">
     <title>Andergraund Disc.</title>
     <link rel="icon" type="image/x-icon" href="./images/AA.ico">
     <link rel="stylesheet" href="andergraund-styles.css">
@@ -28,8 +28,8 @@
             <header>
                 <div class="header-content">
                     <nav>
-                        <a href="#artists" onclick="changeArticle('artists')">Artistid</a>
                         <a href="#blog" onclick="changeArticle('blog')">Uudised</a>
+                        <a href="#artists" onclick="changeArticle('artists')">Artistid</a>
                     </nav>
                     <nav>
                         <a href="#info" onclick="changeArticle('info')">Info</a>
@@ -40,6 +40,51 @@
         </section>
         <section class="content">
             <div class="content-scroll" id="article-switch">
+                <article id="blog">
+
+                    <div class="blog-scroll">
+                        <div class="blog-card" id="blog-1">
+                            <div class="blog-text">
+                                <h2>"Andergraund Disc.'i esimene release!" 01.10.24</h2>
+                                <p>
+                                    oo ooga booga uus lugu lol.
+                                </p>
+                                <div class="artist-links">
+                                    <nav>
+                                        <a class="img-link" href="https://www.instagram.com/andergraunddisc/" target="_blank" rel="noopener noreferrer">
+                                            <img src="./images/instagram.png" width="48">
+                                        </a>
+                                    </nav>
+                                    <nav>
+                                        <a class="img-link" href="https://soundcloud.com/andergraunddisc" target="_blank" rel="noopener noreferrer">
+                                            <img src="./images/soundcloud.png" width="48" height="48">
+                                        </a>
+                                    </nav>
+                                </div>
+                            </div>
+                            <div class="blog-image">
+                                <img src="./images/456898940_1941772729609968_3413986241813720113_n.jpg">
+                            </div>
+                        </div>
+                        <div class="blog-card" id="blog-1">
+                            <div class="blog-text">
+                                <h2>"Veebileht" 27.09.24</h2>
+                                <p>
+                                    andergraund.ee sai alguse.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="blog-card" id="blog-2">
+                            <div class="blog-text">
+                                <h2>"Ander algus!" 10.09.24</h2>
+                                <p>
+                                    10. juulil avasime Discordi serveri lootes sinna koguda ainult muusikuid.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </article>
                 <article id="artists">
                     <button class="artists-slide-button slide-left" type="button" id="arrow-" onclick="changeSlide(-1)"><</button>
                     <div class="artist-card fade hidden" id="ossu">
@@ -104,51 +149,6 @@
                     </div>
                     <button class="artists-slide-button slide-right" type="button" id="arrow-down" onclick="changeSlide(1)">></button>
                 </article>
-                <article id="blog">
-
-                    <div class="blog-scroll">
-                        <div class="blog-card" id="blog-1">
-                            <div class="blog-text">
-                                <h2>"Andergraund Disc.'i esimene release!" 01.10.24</h2>
-                                <p>
-                                    oo ooga booga uus lugu lol.
-                                </p>
-                                <div class="artist-links">
-                                    <nav>
-                                        <a class="img-link" href="https://www.instagram.com/andergraunddisc/" target="_blank" rel="noopener noreferrer">
-                                            <img src="./images/instagram.png" width="48">
-                                        </a>
-                                    </nav>
-                                    <nav>
-                                        <a class="img-link" href="https://soundcloud.com/andergraunddisc" target="_blank" rel="noopener noreferrer">
-                                            <img src="./images/soundcloud.png" width="48" height="48">
-                                        </a>
-                                    </nav>
-                                </div>
-                            </div>
-                            <div class="blog-image">
-                                <img src="./images/456898940_1941772729609968_3413986241813720113_n.jpg">
-                            </div>
-                        </div>
-                        <div class="blog-card" id="blog-1">
-                            <div class="blog-text">
-                                <h2>"Veebileht" 27.09.24</h2>
-                                <p>
-                                    andergraund.ee sai alguse.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="blog-card" id="blog-2">
-                            <div class="blog-text">
-                                <h2>"Ander algus!" 10.09.24</h2>
-                                <p>
-                                    10. juulil avasime Discordi serveri lootes sinna koguda ainult muusikuid.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                </article>
                 <article id="info">
                     <img src="" alt="">
                     <p class="info-text">Andergraund on kamp muusikuid, tegemas muusikat! Hetkesel seisul on veebileht veel pooleli.</p>
@@ -197,6 +197,7 @@
     }
     let timeout;
 
+    console.log(currentArticle);
     function updateVideoSource() {
         let newSrc;
         if (currentArticle === 'artists') {
@@ -280,6 +281,6 @@
     showSlides();
 
     window.onload = function() {
-        changeArticle('artists');
+        changeArticle('blog');
     };
 </script>
