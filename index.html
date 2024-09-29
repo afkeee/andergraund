@@ -6,15 +6,15 @@
     <meta name="description" content="Kamp muusikuid, tegemas muusikat!">
     <meta name="robots" content="index,follow">
     <link rel="canonical" href="https://andergraund.ee/#artists">
-    <title>andergraund disc.</title>
-    <link rel="icon" type="image/x-icon" href="./images/bandcamp.png">
+    <title>Andergraund Disc.</title>
+    <link rel="icon" type="image/x-icon" href="./images/AA.ico">
     <link rel="stylesheet" href="andergraund-styles.css">
 </head>
 <body>
     <div class="video-container">
         <!-- Upper video -->
         <video autoplay muted loop class="upper-video">
-            <source src="./assets/andergraund loop.webm" type="video/webm">
+            <source src="./assets/andertaustprof.webm" type="video/webm">
         </video>
 
         <!-- Lower video -->
@@ -28,10 +28,10 @@
             <header>
                 <div class="header-content">
                     <nav onchange="changeArticle()">
-                        <a href="#artists" onclick="changeArticle('artists')">artistid</a>
-                        <a href="#blog" onclick="changeArticle('blog')">blogi</a>
-                        <a href="#info" onclick="changeArticle('info')">info</a>
-                        <a href="#contact" onclick="changeArticle('contact')">kontakt</a>
+                        <a href="#artists" onclick="changeArticle('artists')">Artistid</a>
+                        <a href="#blog" onclick="changeArticle('blog')">Uudised</a>
+                        <a href="#info" onclick="changeArticle('info')">Info</a>
+                        <a href="#contact" onclick="changeArticle('contact')">Kontakt</a>
                     </nav>
                 </div>
             </header>
@@ -69,7 +69,7 @@
                         <div class="artist-info">
                             <h2>afke</h2>
                             <p>
-                                18aastane edm/lo-fi prode Harjumaalt. Pesukarud on tema värk!
+                                18-aastane EDM/lo-fi produtsent ning trummar.
                             </p>
                             <nav>
                                 <a href="https://afke.ee/music" target="_blank" rel="noopener noreferrer">afke.ee</a>
@@ -133,9 +133,6 @@
                                     10. juulil avasime Discordi serveri lootes sinna koguda ainult muusikuid.
                                 </p>
                             </div>
-                            <div class="blog-image">
-                                <img src="./images/456898940_1941772729609968_3413986241813720113_n.jpg">
-                            </div>
                         </div>
                     </div>
 
@@ -180,7 +177,7 @@
 
     let videoElem = document.getElementById('lowerVid')
     let videoSrcs = {
-        "default": "lillaloop4",
+        "default": "",
         "sundei": "sundeibannerbw",
         "afke": "afkeloop2",
         "metropol": "metropol",

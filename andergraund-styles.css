@@ -145,11 +145,11 @@ article {
 }
 
 article#artists{
-    background-color: rgba(0,0,0, 0.6);
+    background-color: rgba(0,0,0, 0.5);
 }
 
 article#blogi{
-    background-color: rgba(0,0,0, 0.6);
+    background-color: rgba(0,0,0, 0.5);
 }
 
 p, h1, h2, h3{
