@@ -27,9 +27,11 @@
         <section class="header-container">
             <header>
                 <div class="header-content">
-                    <nav onchange="changeArticle()">
+                    <nav>
                         <a href="#artists" onclick="changeArticle('artists')">Artistid</a>
                         <a href="#blog" onclick="changeArticle('blog')">Uudised</a>
+                    </nav>
+                    <nav>
                         <a href="#info" onclick="changeArticle('info')">Info</a>
                         <a href="#contact" onclick="changeArticle('contact')">Kontakt</a>
                     </nav>
@@ -46,9 +48,11 @@
                             <p>
                                 16-aastane Singer/Songwriter Tartust.
                             </p>
-                            <nav>
-                                <a href="https://www.instagram.com/ossu.archive/" target="_blank" rel="noopener noreferrer">Instagram</a>
-                            </nav>
+                            <div class="artist-links">
+                                <nav>
+                                    <a href="https://www.instagram.com/ossu.archive/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                                </nav>
+                            </div>
                         </div>
                         <img src="/images/ossubanner.jpg" alt="">
                     </div>
@@ -59,9 +63,11 @@
                             <p>
                                 Indie-rock (kuigi nad ise kirjeldavad ennast kui "avangard proge dream indie alternatiiv art grunge noise audiosound shoegaze post rokk") ansambel Viljandist
                             </p>
-                        <nav>
-                            <a href="https://www.instagram.com/metropolb2nd/" target="_blank" rel="noopener noreferrer">Instagram</a>
-                        </nav>
+                            <div class="artist-links">
+                                <nav>
+                                    <a href="https://www.instagram.com/metropolb2nd/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                                </nav>
+                            </div>
                         </div>
                         <img src="images/456898940_1941772729609968_3413986241813720113_n.jpg" alt="">
                     </div>
@@ -71,9 +77,11 @@
                             <p>
                                 18-aastane EDM/lo-fi produtsent ning trummar.
                             </p>
-                            <nav>
-                                <a href="https://afke.ee/music" target="_blank" rel="noopener noreferrer">afke.ee</a>
-                            </nav>
+                            <div class="artist-links">
+                                <nav>
+                                    <a href="https://afke.ee/music" target="_blank" rel="noopener noreferrer">afke.ee</a>
+                                </nav>
+                            </div>
                         </div>
                         <img src="./images/raccoonpixelsortafke.jpg" alt="">
                     </div>
@@ -83,12 +91,14 @@
                             <p>
                                 Produtsent ja vabakutseline muusik Tartust  
                             </p>
-                            <nav>
-                                <a href="https://sundei.ee" target="_blank" rel="noopener noreferrer">sundei.ee</a>
-                            </nav>
-                            <nav>
-                                <a href="https://instagram.com/sundeinotfound" target="_blank" rel="noopener noreferrer">instagram</a>
-                            </nav>
+                            <div class="artist-links">
+                                <nav>
+                                    <a href="https://sundei.ee" target="_blank" rel="noopener noreferrer">sundei.ee</a>
+                                </nav>
+                                <nav>
+                                    <a href="https://instagram.com/sundeinotfound" target="_blank" rel="noopener noreferrer">instagram</a>
+                                </nav>
+                            </div>
                         </div>
                         <img src="/images/sundie.png" alt="">
                     </div>
@@ -103,16 +113,18 @@
                                 <p>
                                     oo ooga booga uus lugu lol.
                                 </p>
-                                <nav>
-                                    <a href="https://www.instagram.com/andergraunddisc/" target="_blank" rel="noopener noreferrer">
-                                        <img src="./images/instagram.png" width="48">
-                                    </a>
-                                </nav>
-                                <nav>
-                                    <a href="https://soundcloud.com/andergraunddisc" target="_blank" rel="noopener noreferrer">
-                                        <img src="./images/soundcloud.png" width="48" height="48">
-                                    </a>
-                                </nav>
+                                <div class="artist-links">
+                                    <nav>
+                                        <a class="img-link" href="https://www.instagram.com/andergraunddisc/" target="_blank" rel="noopener noreferrer">
+                                            <img src="./images/instagram.png" width="48">
+                                        </a>
+                                    </nav>
+                                    <nav>
+                                        <a class="img-link" href="https://soundcloud.com/andergraunddisc" target="_blank" rel="noopener noreferrer">
+                                            <img src="./images/soundcloud.png" width="48" height="48">
+                                        </a>
+                                    </nav>
+                                </div>
                             </div>
                             <div class="blog-image">
                                 <img src="./images/456898940_1941772729609968_3413986241813720113_n.jpg">
@@ -151,12 +163,12 @@
                         </div>
                         <div class="contact-nav">
                             <nav>
-                                <a href="https://www.instagram.com/andergraunddisc/" target="_blank" rel="noopener noreferrer">
+                                <a class="img-link" href="https://www.instagram.com/andergraunddisc/" target="_blank" rel="noopener noreferrer">
                                     <img src="./images/instagram.png" width="48">
                                 </a>
                             </nav>
                             <nav>
-                                <a href="https://soundcloud.com/andergraunddisc" target="_blank" rel="noopener noreferrer">
+                                <a class="img-link" href="https://soundcloud.com/andergraunddisc" target="_blank" rel="noopener noreferrer">
                                     <img src="./images/soundcloud.png" width="48" height="48">
                                 </a>
                             </nav>
@@ -177,7 +189,7 @@
 
     let videoElem = document.getElementById('lowerVid')
     let videoSrcs = {
-        "default": "",
+        "default": "lillaloop3",
         "sundei": "sundeibannerbw",
         "afke": "afkeloop2",
         "metropol": "metropol",
