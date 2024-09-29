@@ -329,13 +329,13 @@ img:not(img[alt="Pesukaru image"]) {
 }
 
 
-.blog-card{
+.blog-card {
     scroll-snap-align: center;
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    height: 100%;
+    height: auto; /* Change from 100% to auto */
     max-width: 1200px; /* Restrict max width */
     margin: auto;
     gap: 4rem;
