@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Kamp muusikuid, tegemas muusikat!">
     <meta name="robots" content="index,follow">
-    <link rel="canonical" href="https://andergraund.ee/#blog">
+    <link rel="canonical" href="https://andergraund.ee/#uudised">
     <title>Andergraund Disc.</title>
     <link rel="icon" type="image/x-icon" href="./images/AA.ico">
     <link rel="stylesheet" href="andergraund-styles.css">
@@ -28,7 +28,7 @@
             <header>
                 <div class="header-content">
                     <nav>
-                        <a href="#blog" onclick="changeArticle('blog')">Uudised</a>
+                        <a href="#uudised" onclick="changeArticle('uudised')">Uudised</a>
                         <a href="#artists" onclick="changeArticle('artists')">Artistid</a>
                     </nav>
                     <nav>
@@ -40,7 +40,7 @@
         </section>
         <section class="content">
             <div class="content-scroll" id="article-switch">
-                <article id="blog">
+                <article id="uudised">
 
                     <div class="blog-scroll">
                         <div class="blog-card" id="blog-1">
@@ -202,7 +202,7 @@
         let newSrc;
         if (currentArticle === 'artists') {
             newSrc = `./assets/${videoSrcs[slides[currentSlide].id]}.webm`;
-        } else if(currentArticle === 'blog') {
+        } else if(currentArticle === 'uudised') {
             newSrc = `./assets/${videoSrcs['default']}.webm`;
         } else {
             newSrc = `./assets/${videoSrcs['default']}.webm`;
@@ -281,6 +281,6 @@
     showSlides();
 
     window.onload = function() {
-        changeArticle('blog');
+        changeArticle('uudised');
     };
 </script>
