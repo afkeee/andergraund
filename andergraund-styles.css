@@ -419,6 +419,8 @@ img:not(img[alt="Pesukaru image"]) {
         height: auto;
     }
 
+    
+
     .artist-card img {
         width: 50%;
         max-height: 300px; /* Reduce height on smaller screens */
@@ -426,6 +428,8 @@ img:not(img[alt="Pesukaru image"]) {
 
     .artist-card {
         height: 72vh; /* Ensure full height for the card */
+        justify-content: flex-start;
+        flex-direction: column;
     }
 
     #info {
@@ -449,11 +453,6 @@ img:not(img[alt="Pesukaru image"]) {
         width: 100%;
         align-items: center;
         padding: 0.5rem;
-    }
-
-    .artist-card {
-        flex-direction: column;
-        align-items: center;
     }
 }
 
@@ -486,6 +485,10 @@ img:not(img[alt="Pesukaru image"]) {
     img {
         width: 80%;
         max-height: 300px;
+    }
+
+    .artists-slide-button{
+        display: none;
     }
 
     .blog-scroll{
@@ -547,13 +550,6 @@ img:not(img[alt="Pesukaru image"]) {
 
     .header-content nav a{
         background-color: rgba(0,0,0);
-    }
-
-
-    .artist-card {
-        flex-direction: column;
-        align-items: center;
-        height: 300px; /* Adjust height for mobile */
     }
 
     .artist-info {
