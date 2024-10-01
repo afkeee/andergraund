@@ -351,7 +351,7 @@ img:not(img[alt="Pesukaru image"]) {
     padding: 2rem;
     margin: 0rem 0.5rem;
     border-radius: 15px;
-    background-color: rgba(0,0,0, 0.6);
+    background-color: rgba(0,0,0,0.5);
     transition: transform 0.6s;
     transform-style: preserve-3d;
     backface-visibility: hidden;
