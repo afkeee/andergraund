@@ -244,9 +244,7 @@
     function updateVideoSource() {
         let newSrc;
         if (currentArticle === 'artists') {
-            newSrc = `./assets/${videoSrcs[slides[currentSlide].id]}.webm`;
-        } else if(currentArticle === 'uudised') {
-            newSrc = `./assets/${videoSrcs['default']}.webm`;
+        newSrc = `./assets/${videoSrcs[slides[currentSlide].id]}.webm`;
         } else {
             newSrc = `./assets/${videoSrcs['default']}.webm`;
         }
@@ -275,8 +273,6 @@
             currentSlide++;
         }
 
-        updateVideoSource();
-
         if (currentArticle === 'artists') {
             slides.forEach(slide => slide.classList.add("hidden"));
             slides[currentSlide].classList.remove("hidden");
@@ -297,8 +293,6 @@
             currentSlide += num;
         }
 
-        updateVideoSource();
-
         if (currentArticle === 'artists') {
             slides.forEach(slide => slide.classList.add("hidden"));
             slides[currentSlide].classList.remove("hidden");
@@ -314,7 +308,7 @@
 
         if (currentArticle === 'artists') {
             changeSlide(0); // Reset the slideshow and restart if on 'artists'
-        }else {
+        } else {
             // Hide all artist slides if not in the 'artists' section
             slides.forEach(slide => slide.classList.add("hidden"));
             updateVideoSource(); // Ensure the video changes to default
@@ -322,16 +316,4 @@
     }
 
     showSlides();
-
-    window.onload = function() {
-        if(currentArticle === 'uudised'){
-            changeArticle('uudised')
-        } else if(currentArticle === 'artists'){
-            changeArticle('artists')
-        } else if (currentArticle === 'info'){
-            changeArticle('info')
-        } else if (currentArticle === 'contact'){
-            changeArticle('contact')
-        }
-    };
 </script>
