@@ -244,7 +244,7 @@
     function updateVideoSource() {
         let newSrc;
         if (currentArticle === 'artists') {
-        newSrc = `./assets/${videoSrcs[slides[currentSlide].id]}.webm`;
+            newSrc = `./assets/${videoSrcs[slides[currentSlide].id]}.webm`;
         } else {
             newSrc = `./assets/${videoSrcs['default']}.webm`;
         }
@@ -257,6 +257,7 @@
             // Wait for the fade-out transition (500ms), then update the video source
             setTimeout(() => {
                 videoElem.src = newSrc;
+                videoElem.load(); // Ensure the video is loaded
 
                 // Fade the video back in after updating the source
                 videoElem.onloadeddata = () => {
@@ -303,6 +304,7 @@
     };
 
     function changeArticle(articleName) {
+        clearTimeout(timeout); // Clear the timeout when changing articles
         currentArticle = articleName;
 
         if (currentArticle === 'artists') {
