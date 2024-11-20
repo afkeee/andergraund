@@ -241,31 +241,34 @@
     let timeout;
 
     console.log(currentArticle);
-    // function updateVideoSource() {
-    //     let newSrc;
-    //     if (currentArticle === 'artists') {
-    //         newSrc = `./assets/${videoSrcs[slides[currentSlide].id]}.webm`;
-    //     } else {
-    //         newSrc = `./assets/${videoSrcs['default']}.webm`;
-    //     }
+    function updateVideoSource() {
+        let newSrc;
+        if (currentArticle === 'artists') {
+            newSrc = `./assets/${videoSrcs[slides[currentSlide].id]}.webm`;
+        } else {
+            newSrc = `./assets/${videoSrcs['default']}.webm`;
+        }
 
-    //     // Check if the new source is different from the current one
-    //     if (videoElem.src !== newSrc) {
-    //         // Fade out the video
-    //         videoElem.style.opacity = 0;
+        // Check if the new source is different from the current one
+        if (videoElem.src !== newSrc) {
+            // Fade out the video
+            videoElem.style.opacity = 0;
 
-    //         // Wait for the fade-out transition (500ms), then update the video source
-    //         setTimeout(() => {
-    //             videoElem.src = newSrc;
-    //             videoElem.load(); // Ensure the video is loaded
+            // Clear any existing timeout to prevent stacking
+            clearTimeout(timeout);
 
-    //             // Fade the video back in after updating the source
-    //             videoElem.onloadeddata = () => {
-    //                 videoElem.style.opacity = 1;
-    //             };
-    //         }, 500); // Duration matches the CSS transition time
-    //     }
-    // }
+            // Wait for the fade-out transition (500ms), then update the video source
+            timeout = setTimeout(() => {
+                videoElem.src = newSrc;
+                videoElem.load(); // Ensure the video is loaded
+
+                // Fade the video back in after updating the source
+                videoElem.onloadeddata = () => {
+                    videoElem.style.opacity = 1;
+                };
+            }, 500); // Duration matches the CSS transition time
+        }
+    }
 
     function showSlides() {
         if ((currentSlide + 1) >= slides.length) {
