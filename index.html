@@ -247,6 +247,12 @@
         activeContext = Symbol(); // Invalidate previous operations
     }
 
+    const isAndroidChrome = /Android/i.test(navigator.userAgent) && /Chrome/i.test(navigator.userAgent);
+
+    function forceReflow(element) {
+        void element.offsetHeight; // Trigger reflow
+    }
+
     // Update the video source based on the current state
     function updateVideoSource(context) {
         const newSrc = currentArticle === 'artists' && slides[currentSlide]
@@ -255,18 +261,22 @@
 
         if (videoElem.src !== newSrc) {
             videoElem.style.opacity = 0;
+            forceReflow(videoElem); // Ensure opacity change is applied
 
             setTimeout(() => {
-                if (context !== activeContext) return; // Abort if the context changed
+                if (context !== activeContext) return; // Abort if context changed
                 videoElem.src = newSrc;
                 videoElem.load();
 
                 videoElem.onloadeddata = () => {
                     if (context === activeContext) {
-                        videoElem.style.opacity = 1; // Fade in only if context is still valid
+                        videoElem.style.opacity = 1;
+                        videoElem.play().catch(() => {
+                            console.warn('Playback failed, likely due to autoplay restrictions.');
+                        });
                     }
                 };
-            }, 500); // Match fade-out duration
+            }, isAndroidChrome ? 700 : 500); // Slightly longer delay for Android Chrome
         }
     }
 
