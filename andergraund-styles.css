@@ -352,18 +352,7 @@ img:not(img[alt="Pesukaru image"]) {
     margin: 0rem 0.5rem;
     border-radius: 15px;
     background-color: rgba(0,0,0,0.5);
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
-    backface-visibility: hidden;
 }
-
-/* .blog-card.flip-in {
-    animation: flipIn 0.6s forwards;
-}
-
-.blog-card.flip-out {
-    animation: flipOut 0.6s forwards;
-} */
 
 .blog-text{
     display: flex;
@@ -501,13 +490,13 @@ img:not(img[alt="Pesukaru image"]) {
         width: 100%;
         gap: 2rem;
 
-        scroll-behavior: smooth;
+        /* scroll-behavior: smooth;
         scroll-snap-type: y mandatory;
         scroll-snap-stop: always;
 
         overflow-y: scroll;
         scrollbar-color: grey transparent;
-        scrollbar-width: none;
+        scrollbar-width: none; */
     }
 
     .blog-card img{
