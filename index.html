@@ -237,75 +237,99 @@
         "ossu": "ossu_banner"
     };
 
-    let timeoutID = null; // Global timeout ID to track the current slideshow
-    let switching = false; // Prevent rapid switches
+    let timeoutID = null; // Tracks slideshow timeout
+    let switching = false; // Prevent rapid switching
+    let activeContext = Symbol(); // Unique identifier for current article state
 
-    function updateVideoSource() {
+    // Utility to clear all pending updates
+    function clearPendingUpdates() {
+        clearTimeout(timeoutID);
+        activeContext = Symbol(); // Invalidate previous operations
+    }
+
+    // Update the video source based on the current state
+    function updateVideoSource(context) {
         const newSrc = currentArticle === 'artists' && slides[currentSlide]
-            ? `./assets/${videoSrcs[slides[currentSlide]?.id] || videoSrcs['default']}.webm`
+            ? `./assets/${videoSrcs[slides[currentSlide]?.id] || 'default'}.webm`
             : `./assets/${videoSrcs['default']}.webm`;
 
         if (videoElem.src !== newSrc) {
             videoElem.style.opacity = 0;
-            clearTimeout(timeoutID);
 
-            timeoutID = setTimeout(() => {
+            setTimeout(() => {
+                if (context !== activeContext) return; // Abort if the context changed
                 videoElem.src = newSrc;
                 videoElem.load();
+
                 videoElem.onloadeddata = () => {
-                    videoElem.style.opacity = 1;
+                    if (context === activeContext) {
+                        videoElem.style.opacity = 1; // Fade in only if context is still valid
+                    }
                 };
             }, 500); // Match fade-out duration
         }
     }
 
-    function updateSlides() {
+    // Manage slide visibility
+    function updateSlides(context) {
+        if (context !== activeContext) return; // Abort if the context changed
+
         slides.forEach((slide, index) =>
             slide.classList.toggle("hidden", index !== currentSlide)
         );
     }
 
+    // Start the slideshow for the 'artists' article
     function showSlides() {
-        clearTimeout(timeoutID); // Clear any existing timeouts
-        if (currentArticle !== 'artists') return; // Stop slideshow outside 'artists'
+        clearTimeout(timeoutID);
+        const context = activeContext;
+
+        if (currentArticle !== 'artists') return; // Stop if not in 'artists'
 
         currentSlide = (currentSlide + 1) % slides.length;
-        updateSlides();
-        updateVideoSource();
+        updateSlides(context);
+        updateVideoSource(context);
 
         timeoutID = setTimeout(showSlides, 10000); // Schedule next slide
     }
 
+    // Change slides manually
     function changeSlide(step) {
         clearTimeout(timeoutID); // Stop automatic transitions
+        const context = activeContext;
+
         currentSlide = (currentSlide + step + slides.length) % slides.length;
         if (currentArticle === 'artists') {
-            updateSlides();
-            updateVideoSource();
+            updateSlides(context);
+            updateVideoSource(context);
             timeoutID = setTimeout(showSlides, 10000); // Resume slideshow
         }
     }
 
+    // Switch to a different article
     function changeArticle(articleName) {
-        if (switching) return; // Prevent rapid switches
+        if (switching) return; // Prevent rapid switching
         switching = true;
 
-        clearTimeout(timeoutID); // Stop ongoing timeouts
+        clearPendingUpdates(); // Cancel ongoing updates
         currentArticle = articleName;
+        const context = (activeContext = Symbol()); // New unique context
 
         if (currentArticle === 'artists') {
             currentSlide = -1; // Reset slideshow
             showSlides();
         } else {
-            slides.forEach(slide => slide.classList.add("hidden"));
+            slides.forEach(slide => slide.classList.add("hidden")); // Hide all slides
             videoElem.style.opacity = 0;
-            updateVideoSource();
+            updateVideoSource(context);
         }
 
         setTimeout(() => (switching = false), 300); // Debounce rapid switches
     }
 
+    // Initialize the slideshow on page load
     window.onload = () => {
+        activeContext = Symbol(); // Set initial context
         showSlides();
     };
 
