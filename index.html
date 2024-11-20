@@ -227,9 +227,7 @@
 <script>
     let currentSlide = -1;
     let currentArticle = document.URL.split('/').pop().split('#').pop();
-    const articleElem = document.getElementById('article-switch');
     const slides = Array.from(document.getElementsByClassName("artist-card"));
-
     const videoElem = document.getElementById('lowerVid');
     const videoSrcs = {
         "default": "anderupsidedown",
@@ -238,7 +236,9 @@
         "metropol": "metropol",
         "ossu": "ossu_banner"
     };
-    let timeout;
+
+    let timeoutID = null; // Global timeout ID to track the current slideshow
+    let switching = false; // Prevent rapid switches
 
     function updateVideoSource() {
         const newSrc = currentArticle === 'artists' && slides[currentSlide]
@@ -247,13 +247,17 @@
 
         if (videoElem.src !== newSrc) {
             videoElem.style.opacity = 0;
-            clearTimeout(timeout);
+            clearTimeout(timeoutID);
 
-            timeout = setTimeout(() => {
+            timeoutID = setTimeout(() => {
                 videoElem.src = newSrc;
                 videoElem.load();
-                videoElem.onloadeddata = () => (videoElem.style.opacity = 1);
-            }, 500);
+                videoElem.onloadeddata = () => {
+                    if (currentArticle === 'artists' || currentArticle === 'uudised') {
+                        videoElem.style.opacity = 1;
+                    }
+                };
+            }, 500); // Match fade-out duration
         }
     }
 
@@ -264,31 +268,43 @@
     }
 
     function showSlides() {
+        clearTimeout(timeoutID); // Clear any existing timeouts
+        if (currentArticle !== 'artists') return; // Stop slideshow outside 'artists'
+
         currentSlide = (currentSlide + 1) % slides.length;
-        if (currentArticle === 'artists') updateSlides();
+        updateSlides();
         updateVideoSource();
-        timeout = setTimeout(showSlides, 10000);
+
+        timeoutID = setTimeout(showSlides, 10000); // Schedule next slide
     }
 
     function changeSlide(step) {
-        clearTimeout(timeout);
+        clearTimeout(timeoutID); // Stop automatic transitions
         currentSlide = (currentSlide + step + slides.length) % slides.length;
-        if (currentArticle === 'artists') updateSlides();
-        updateVideoSource();
-        timeout = setTimeout(showSlides, 10000);
+        if (currentArticle === 'artists') {
+            updateSlides();
+            updateVideoSource();
+            timeoutID = setTimeout(showSlides, 10000); // Resume slideshow
+        }
     }
 
     function changeArticle(articleName) {
-        clearTimeout(timeout);
+        if (switching) return; // Prevent rapid switches
+        switching = true;
+
+        clearTimeout(timeoutID); // Stop ongoing timeouts
         currentArticle = articleName;
 
         if (currentArticle === 'artists') {
-            currentSlide = -1; // Reset slide index
+            currentSlide = -1; // Reset slideshow
             showSlides();
         } else {
             slides.forEach(slide => slide.classList.add("hidden"));
+            videoElem.style.opacity = 0;
             updateVideoSource();
         }
+
+        setTimeout(() => (switching = false), 300); // Debounce rapid switches
     }
 
     window.onload = () => {
