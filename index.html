@@ -319,15 +319,19 @@
             slides.forEach(slide => slide.classList.add("hidden"));
             updateVideoSource(); // Ensure the video changes to default
         }
-
-        if(currentArticle !== document.URL.split('/').pop().split('#').pop()){
-            currentArticle = articleName
-        }
     }
 
     showSlides();
 
     window.onload = function() {
-        changeArticle('uudised');
+        if(currentArticle === 'uudised'){
+            changeArticle('uudised')
+        } else if(currentArticle === 'artists'){
+            changeArticle('artists')
+        } else if (currentArticle === 'info'){
+            changeArticle('info')
+        } else if (currentArticle === 'contact'){
+            changeArticle('contact')
+        }
     };
 </script>
