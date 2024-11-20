@@ -319,6 +319,10 @@
             slides.forEach(slide => slide.classList.add("hidden"));
             updateVideoSource(); // Ensure the video changes to default
         }
+
+        if(currentArticle !== document.URL.split('/').pop().split('#').pop()){
+            currentArticle = articleName
+        }
     }
 
     showSlides();
