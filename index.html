@@ -242,7 +242,7 @@
 
     function updateVideoSource() {
         const newSrc = currentArticle === 'artists' && slides[currentSlide]
-            ? `./assets/${videoSrcs[slides[currentSlide]?.id] || 'default'}.webm`
+            ? `./assets/${videoSrcs[slides[currentSlide]?.id] || videoSrcs['default']}.webm`
             : `./assets/${videoSrcs['default']}.webm`;
 
         if (videoElem.src !== newSrc) {
@@ -253,9 +253,7 @@
                 videoElem.src = newSrc;
                 videoElem.load();
                 videoElem.onloadeddata = () => {
-                    if (currentArticle === 'artists' || currentArticle === 'uudised') {
-                        videoElem.style.opacity = 1;
-                    }
+                    videoElem.style.opacity = 1;
                 };
             }, 500); // Match fade-out duration
         }
