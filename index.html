@@ -227,97 +227,72 @@
 <script>
     let currentSlide = -1;
     let currentArticle = document.URL.split('/').pop().split('#').pop();
-    let article = document.getElementById('article-switch')
-    let slides = Array.from(document.getElementsByClassName("artist-card"));
+    const articleElem = document.getElementById('article-switch');
+    const slides = Array.from(document.getElementsByClassName("artist-card"));
 
-    let videoElem = document.getElementById('lowerVid')
-    let videoSrcs = {
+    const videoElem = document.getElementById('lowerVid');
+    const videoSrcs = {
         "default": "anderupsidedown",
         "sundei": "sundeibannerbw",
         "afke": "afkeloop2",
         "metropol": "metropol",
         "ossu": "ossu_banner"
-    }
+    };
     let timeout;
 
-    console.log(currentArticle);
     function updateVideoSource() {
-        let newSrc;
-        if (currentArticle === 'artists') {
-            newSrc = `./assets/${videoSrcs[slides[currentSlide].id]}.webm`;
-        } else {
-            newSrc = `./assets/${videoSrcs['default']}.webm`;
-        }
+        const newSrc = currentArticle === 'artists' && slides[currentSlide]
+            ? `./assets/${videoSrcs[slides[currentSlide]?.id] || 'default'}.webm`
+            : `./assets/${videoSrcs['default']}.webm`;
 
-        // Check if the new source is different from the current one
         if (videoElem.src !== newSrc) {
-            // Fade out the video
             videoElem.style.opacity = 0;
-
-            // Clear any existing timeout to prevent stacking
             clearTimeout(timeout);
 
-            // Wait for the fade-out transition (500ms), then update the video source
             timeout = setTimeout(() => {
                 videoElem.src = newSrc;
-                videoElem.load(); // Ensure the video is loaded
-
-                // Fade the video back in after updating the source
-                videoElem.onloadeddata = () => {
-                    videoElem.style.opacity = 1;
-                };
-            }, 500); // Duration matches the CSS transition time
+                videoElem.load();
+                videoElem.onloadeddata = () => (videoElem.style.opacity = 1);
+            }, 500);
         }
+    }
+
+    function updateSlides() {
+        slides.forEach((slide, index) =>
+            slide.classList.toggle("hidden", index !== currentSlide)
+        );
     }
 
     function showSlides() {
-        if ((currentSlide + 1) >= slides.length) {
-            currentSlide = 0;
-        } else {
-            currentSlide++;
-        }
-
-        if (currentArticle === 'artists') {
-            slides.forEach(slide => slide.classList.add("hidden"));
-            slides[currentSlide].classList.remove("hidden");
-        }
-
-        updateVideoSource();
-        timeout = setTimeout(showSlides, 10000); // Changes artist every 10 seconds
-    }
-
-    function changeSlide(num) {
-        clearTimeout(timeout);
-
-        if ((currentSlide + num) >= slides.length) {
-            currentSlide = 0;
-        } else if ((currentSlide + num) < 0) {
-            currentSlide = slides.length - 1;
-        } else {
-            currentSlide += num;
-        }
-
-        if (currentArticle === 'artists') {
-            slides.forEach(slide => slide.classList.add("hidden"));
-            slides[currentSlide].classList.remove("hidden");
-        }
-
+        currentSlide = (currentSlide + 1) % slides.length;
+        if (currentArticle === 'artists') updateSlides();
         updateVideoSource();
         timeout = setTimeout(showSlides, 10000);
-    };
+    }
+
+    function changeSlide(step) {
+        clearTimeout(timeout);
+        currentSlide = (currentSlide + step + slides.length) % slides.length;
+        if (currentArticle === 'artists') updateSlides();
+        updateVideoSource();
+        timeout = setTimeout(showSlides, 10000);
+    }
 
     function changeArticle(articleName) {
-        clearTimeout(timeout); // Clear the timeout when changing articles
+        clearTimeout(timeout);
         currentArticle = articleName;
 
         if (currentArticle === 'artists') {
-            changeSlide(0); // Reset the slideshow and restart if on 'artists'
+            currentSlide = -1; // Reset slide index
+            showSlides();
         } else {
-            // Hide all artist slides if not in the 'artists' section
             slides.forEach(slide => slide.classList.add("hidden"));
-            updateVideoSource(); // Ensure the video changes to default
+            updateVideoSource();
         }
     }
 
-    showSlides();
+    window.onload = () => {
+        showSlides();
+    };
+
 </script>
