@@ -326,9 +326,8 @@
         switching = true;
 
         clearPendingUpdates(); // Cancel ongoing updates
-        currentArticle = articleName;
         const context = (activeContext = Symbol()); // New unique context
-
+        
         if (currentArticle === 'artists') {
             currentSlide = -1; // Reset slideshow
             showSlides();
@@ -337,6 +336,9 @@
             videoElem.style.opacity = 0;
             updateVideoSource(context);
         }
+
+        currentArticle = articleName;
+        
 
         setTimeout(() => (switching = false), isAndroidChrome ? 1000 : 500); // Debounce rapid switches
     }
