@@ -19,7 +19,7 @@
 
         <!-- Lower video -->
         <video autoplay muted loop class="lower-video" id="lowerVid">
-            <source type="video/webm">
+            <source type="video/webm" src="./assets/anderupsidedown.webm">
         </video>
     </div>
 
@@ -274,6 +274,7 @@
                         videoElem.play().catch(() => {
                             console.warn('Playback failed, likely due to autoplay restrictions.');
                         });
+                        console.log(currentArticle)
                     }
                 };
             }, isAndroidChrome ? 1000 : 500); // Slightly longer delay for Android Chrome
