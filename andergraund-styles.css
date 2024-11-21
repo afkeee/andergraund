@@ -485,7 +485,7 @@ img:not(img[alt="Pesukaru image"]) {
         align-items: center;
         flex-direction: column;
         flex-wrap: nowrap;
-        height: 72vh;
+        max-height: 64vh;
         width: 100%;
         gap: 2rem;
 
