@@ -137,7 +137,6 @@ section.content > .content-scroll {
     flex-direction: row;
     flex-wrap: nowrap;
     overflow-x: hidden;
-    scroll-behavior: smooth;
 }
 
 article {
