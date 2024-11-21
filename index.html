@@ -319,7 +319,10 @@
 
     // Switch to a different article
     function changeArticle(articleName) {
-        if (switching) return; // Prevent rapid switching
+        if (switching) {
+            console.log('is still switching')
+            return;
+        }; // Prevent rapid switching
         switching = true;
 
         clearPendingUpdates(); // Cancel ongoing updates
@@ -335,7 +338,7 @@
             updateVideoSource(context);
         }
 
-        setTimeout(() => (switching = false), 300); // Debounce rapid switches
+        setTimeout(() => (switching = false), isAndroidChrome ? 1000 : 500); // Debounce rapid switches
     }
 
     // Initialize the slideshow on page load
