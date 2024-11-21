@@ -307,7 +307,7 @@ img:not(img[alt="Pesukaru image"]) {
 
 #lowerVid {
     transition: opacity 0.5s ease-in-out;
-    opacity: 1; /* Initially fully visible */
+    opacity: 1;
 }
 
 @keyframes fade-in {
